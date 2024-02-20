@@ -16,10 +16,11 @@ public class Castle {
     @Value("${my.castle.name}")
     private String name;
 
-    @Autowired
-    Knight knight;
 
-    public Castle() {
+    Knight knight;
+    @Autowired
+    public Castle(Knight knight) {
+        this.knight = knight;
     }
 
     @PostConstruct
