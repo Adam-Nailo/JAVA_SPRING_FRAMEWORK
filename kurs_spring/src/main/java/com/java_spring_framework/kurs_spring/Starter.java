@@ -3,6 +3,7 @@ package com.java_spring_framework.kurs_spring;
 import com.java_spring_framework.kurs_spring.domain.Castle;
 import com.java_spring_framework.kurs_spring.domain.Knight;
 import com.java_spring_framework.kurs_spring.domain.Quest;
+import component.TestComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Starter implements CommandLineRunner {
+
+    @Autowired
+    TestComponent test;
 
     @Autowired
     Castle castle;
