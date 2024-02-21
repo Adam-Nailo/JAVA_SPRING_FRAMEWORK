@@ -10,15 +10,14 @@ import org.springframework.stereotype.Component;
 /**
  * Created by Adam Seweryn
  */
-@Component
-@PropertySource("classpath:castle.properties")
+
 public class Castle {
-    @Value("${my.castle.name}")
+
     private String name;
 
 
     Knight knight;
-    @Autowired
+
     public Castle(Knight knight) {
         this.knight = knight;
     }
@@ -28,14 +27,18 @@ public class Castle {
         this.knight = knight;
     }
 
-    @PostConstruct
+
     public void build() {
         System.out.println("Wybudowano zamek " + name);
     }
 
-    @PreDestroy
+
     public void tearDown() {
         System.out.println("Zaraz wyburzymy zamek " + name);
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

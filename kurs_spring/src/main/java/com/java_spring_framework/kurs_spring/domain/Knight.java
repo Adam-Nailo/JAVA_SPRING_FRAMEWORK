@@ -6,11 +6,11 @@ import org.springframework.stereotype.Component;
 /**
  * Created by Adam Seweryn
  */
-@Component
+
 public class Knight {
 
-    private String name = "Lancelot";
-    private int age = 29;
+    private String name;
+    private int age;
     private Quest quest;
 
     public Knight() {
@@ -23,11 +23,10 @@ public class Knight {
 //        this.age = age;
 //        this.quest = quest;
 //    }
-//    public Knight(String name, int age) {
-//        this.name = name;
-//        this.age = age;
-//    }
-@Autowired
+    public Knight(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
     public void setQuest(Quest quest) {
     System.out.println("Ustawiam zadanie dla rycerza.");
         this.quest = quest;
