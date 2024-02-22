@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource("classpath:config/spring-config.xml")
+
 public class KursSpringApplication {
 
 	public static void main(String[] args) {
