@@ -13,7 +13,8 @@
     <import resource="classpath:config/castle-config.xml"/>
 
     <bean id="quest" class="com.java_spring_framework.kurs_spring.domain.Quest"/>
-    <bean id="knight" class="com.java_spring_framework.kurs_spring.domain.Knight">
+    <bean id="knight" class="com.java_spring_framework.kurs_spring.domain.Knight"
+    scope="prototype">
         <constructor-arg index="0" value="Lancelot"/>
         <constructor-arg index="1" value="29"/>
         <property name="quest" ref="quest"/>

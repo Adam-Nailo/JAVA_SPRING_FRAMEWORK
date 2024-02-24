@@ -10,14 +10,14 @@ import org.springframework.stereotype.Component;
 /**
  * Created by Adam Seweryn
  */
-
+@Component
 public class Castle {
-
+@Value("${my.castle.name}")
     private String name;
 
 
     Knight knight;
-
+    @Autowired
     public Castle(Knight knight) {
         this.knight = knight;
     }

@@ -1,12 +1,14 @@
 package com.java_spring_framework.kurs_spring.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
  * Created by Adam Seweryn
  */
-
+@Component
+@Scope("prototype")
 public class Knight {
 
     private String name;
@@ -14,11 +16,13 @@ public class Knight {
     private Quest quest;
 
     public Knight() {
+        this.name = "Lancelot";
+        this.age = 29;
 
     }
 
 
-//    public Knight(String name, int age, Quest quest) {
+    //    public Knight(String name, int age, Quest quest) {
 //        this.name = name;
 //        this.age = age;
 //        this.quest = quest;
@@ -27,13 +31,24 @@ public class Knight {
         this.name = name;
         this.age = age;
     }
+
+    @Autowired
     public void setQuest(Quest quest) {
-    System.out.println("Ustawiam zadanie dla rycerza.");
+        System.out.println("Ustawiam zadanie dla rycerza.");
         this.quest = quest;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
     public String toString() {
         return "Rycerz o imieniu " + name + " (" + age + "). " + "Zadanie: " + quest;
     }
+
 }
