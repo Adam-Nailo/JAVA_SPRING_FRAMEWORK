@@ -17,6 +17,12 @@
         <property name="name" value="${my.castle.name}"/>
     </bean>
     <bean id="tournament" class="com.java_spring_framework.kurs_spring.domain.Tournament" >
-        <property name="knight" ref = "percival"/>
+        <property name="knights">
+            <map>
+                <entry key="percival" value-ref="percival"/>
+                <entry key="lancelot" value-ref="lancelot"/>
+            </map>
+        </property>
+
     </bean>
 </beans>
