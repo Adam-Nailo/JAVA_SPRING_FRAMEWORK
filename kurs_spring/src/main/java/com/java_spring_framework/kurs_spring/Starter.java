@@ -27,7 +27,5 @@ public class Starter implements CommandLineRunner {
         tournament.duel();
         System.out.println(tournament);
 
-        System.out.println(castle);
-
     }
 }

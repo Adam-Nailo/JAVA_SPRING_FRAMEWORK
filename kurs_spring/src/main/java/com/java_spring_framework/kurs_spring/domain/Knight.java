@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by Adam Seweryn
  */
-@Component
-@Scope("prototype")
+
 public class Knight {
 
     private String name;

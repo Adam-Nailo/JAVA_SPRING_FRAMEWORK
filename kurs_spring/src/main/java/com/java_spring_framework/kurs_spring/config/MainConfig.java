@@ -3,6 +3,7 @@ package com.java_spring_framework.kurs_spring.config;
 import com.java_spring_framework.kurs_spring.domain.Castle;
 import com.java_spring_framework.kurs_spring.domain.Knight;
 import com.java_spring_framework.kurs_spring.domain.Quest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 
@@ -11,18 +12,23 @@ import org.springframework.context.annotation.*;
 //@PropertySource("classpath:castle.properties")
 public class MainConfig {
 
-//    @Bean
-//    public Quest createQuest() {
-//        return new Quest();
-//    }
-//
-//    @Bean
-//    @Scope("prototype")
-//    public Knight knight() {
-//        Knight knight = new Knight("Lancelot", 29);
-//        knight.setQuest(createQuest());
-//        return knight;
-//    }
+   @Autowired
+   Quest quest;
+
+    @Bean(name = "lancelot")
+    @Primary
+    public Knight lancelot() {
+        Knight lancelot = new Knight("Lancelot", 29);
+        lancelot.setQuest(quest);
+        return lancelot;
+    }
+
+    @Bean(name = "percival")
+    public Knight percival() {
+        Knight percival = new Knight("Percival", 25);
+        percival.setQuest(quest);
+        return percival;
+    }
 //    @Bean(name = "zamek", initMethod = "build", destroyMethod = "tearDown")
 //    @Value("${my.castle.name}")
 //    public Castle castle(String name) {

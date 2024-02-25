@@ -12,11 +12,17 @@
 
     <import resource="classpath:config/castle-config.xml"/>
 
-    <bean id="quest" class="com.java_spring_framework.kurs_spring.domain.Quest"/>
-    <bean id="knight" class="com.java_spring_framework.kurs_spring.domain.Knight"
+    <bean id="quest" class="com.java_spring_framework.kurs_spring.domain.Quest" scope="prototype"/>
+    <bean id="lancelot" class="com.java_spring_framework.kurs_spring.domain.Knight" primary="true"
     scope="prototype">
         <constructor-arg index="0" value="Lancelot"/>
         <constructor-arg index="1" value="29"/>
+        <property name="quest" ref="quest"/>
+    </bean>
+    <bean id="percival" class="com.java_spring_framework.kurs_spring.domain.Knight"
+          scope="prototype">
+        <constructor-arg index="0" value="Percival"/>
+        <constructor-arg index="1" value="25"/>
         <property name="quest" ref="quest"/>
     </bean>
 </beans>
