@@ -9,9 +9,9 @@
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="com.java_spring_framework.kurs_spring"/>
-    <context:property-placeholder location="classpath:castle.properties"/>
+    <context:property-placeholder location="classpath:knightRepository.properties"/>
 
-    <bean id="castle" class="com.java_spring_framework.kurs_spring.domain.Castle" init-method="build"
+    <bean id="castle" class="com.java_spring_framework.kurs_spring.domain.repository.KnightRepository" init-method="build"
           destroy-method="tearDown">
         <constructor-arg index="0" ref="lancelot"/>
         <property name="name" value="${my.castle.name}"/>

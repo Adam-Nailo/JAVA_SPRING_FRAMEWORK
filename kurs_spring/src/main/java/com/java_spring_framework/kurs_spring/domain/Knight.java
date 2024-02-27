@@ -1,8 +1,5 @@
 package com.java_spring_framework.kurs_spring.domain;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by Adam Seweryn
@@ -31,7 +28,7 @@ public class Knight {
         this.age = age;
     }
 
-    @Autowired
+
     public void setQuest(Quest quest) {
         System.out.println("Ustawiam zadanie dla rycerza.");
         this.quest = quest;

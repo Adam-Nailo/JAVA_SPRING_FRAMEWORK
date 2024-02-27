@@ -1,10 +1,9 @@
 package com.java_spring_framework.kurs_spring;
 
-import com.java_spring_framework.kurs_spring.domain.Castle;
-import com.java_spring_framework.kurs_spring.domain.Knight;
-import com.java_spring_framework.kurs_spring.domain.Quest;
+import com.java_spring_framework.kurs_spring.domain.repository.KnightRepository;
 
-import com.java_spring_framework.kurs_spring.domain.Tournament;
+import com.java_spring_framework.kurs_spring.domain.repository.QuestRepository;
+import com.java_spring_framework.kurs_spring.services.QuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,16 +15,19 @@ import org.springframework.stereotype.Component;
 public class Starter implements CommandLineRunner {
 
     @Autowired
-    Castle castle;
+    KnightRepository knightRepository;
 
     @Autowired
-    Tournament tournament;
+    QuestRepository questRepository;
+
+    @Autowired
+    QuestService questService;
+
     @Override
     public void run(String... args) throws Exception {
+        questService.assignRandomQuest("Lancelot");
+        questService.assignRandomQuest("Percival");
 
-        System.out.println(castle);
-        tournament.duel();
-        System.out.println(tournament);
-
+        System.out.println(knightRepository);
     }
 }
