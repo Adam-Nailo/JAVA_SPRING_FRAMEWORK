@@ -1,9 +1,11 @@
 package com.java_spring_framework.kurs_spring.services;
 
 import com.java_spring_framework.kurs_spring.domain.Quest;
+import com.java_spring_framework.kurs_spring.domain.repository.InMemoryRepository;
 import com.java_spring_framework.kurs_spring.domain.repository.KnightRepository;
 import com.java_spring_framework.kurs_spring.domain.repository.QuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

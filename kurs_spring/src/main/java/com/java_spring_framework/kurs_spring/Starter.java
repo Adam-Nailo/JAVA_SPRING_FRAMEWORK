@@ -1,10 +1,12 @@
 package com.java_spring_framework.kurs_spring;
 
-import com.java_spring_framework.kurs_spring.domain.repository.KnightRepository;
+import com.java_spring_framework.kurs_spring.domain.repository.InMemoryRepository;
 
+import com.java_spring_framework.kurs_spring.domain.repository.KnightRepository;
 import com.java_spring_framework.kurs_spring.domain.repository.QuestRepository;
 import com.java_spring_framework.kurs_spring.services.QuestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
