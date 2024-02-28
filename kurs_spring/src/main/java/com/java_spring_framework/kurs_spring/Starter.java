@@ -6,12 +6,14 @@ import com.java_spring_framework.kurs_spring.domain.repository.QuestRepository;
 import com.java_spring_framework.kurs_spring.services.QuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
  * Created by Adam Seweryn
  */
 @Component
+@Scope("singleton")
 public class Starter implements CommandLineRunner {
 
     @Autowired
@@ -25,9 +27,13 @@ public class Starter implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        questRepository.createRandomQuest();
+        questRepository.createRandomQuest();
+        questRepository.createRandomQuest();
+        System.out.println(questRepository);
+
+
         questService.assignRandomQuest("Lancelot");
         questService.assignRandomQuest("Percival");
-
-        System.out.println(knightRepository);
     }
 }
