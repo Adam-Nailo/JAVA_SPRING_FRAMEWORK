@@ -17,12 +17,6 @@ public class Knight {
 
     }
 
-
-    //    public Knight(String name, int age, Quest quest) {
-//        this.name = name;
-//        this.age = age;
-//        this.quest = quest;
-//    }
     public Knight(String name, int age) {
         this.name = name;
         this.age = age;
@@ -32,6 +26,14 @@ public class Knight {
     public void setQuest(Quest quest) {
         System.out.println("Ustawiam zadanie dla rycerza.");
         this.quest = quest;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getAge() {
