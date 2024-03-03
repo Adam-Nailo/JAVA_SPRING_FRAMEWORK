@@ -37,4 +37,8 @@ public class DBKnightRepository implements KnightRepository{
         createKnight("Percival",25);
     }
 
+    @Override
+    public void createKnight(Knight knight) {
+    }
+
 }

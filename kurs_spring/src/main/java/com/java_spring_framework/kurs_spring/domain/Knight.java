@@ -12,8 +12,6 @@ public class Knight {
     private Quest quest;
 
     public Knight() {
-        this.name = "Lancelot";
-        this.age = 29;
 
     }
 
