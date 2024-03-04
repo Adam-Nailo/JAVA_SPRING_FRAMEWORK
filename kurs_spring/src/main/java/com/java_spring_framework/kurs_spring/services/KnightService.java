@@ -13,12 +13,16 @@ import java.util.List;
 public class KnightService {
 
     @Autowired
-    KnightRepository repository;
+    KnightRepository knightRepository;
     public List<Knight> getAllKnights(){
-        return new ArrayList<>(repository.getAllKnights());
+        return new ArrayList<>(knightRepository.getAllKnights());
     }
 
     public void saveKnight(Knight knight) {
-        repository.createKnight(knight);
+        knightRepository.createKnight(knight);
+    }
+
+    public Knight getKnight(Integer id) {
+        return knightRepository.getKnightById(id);
     }
 }

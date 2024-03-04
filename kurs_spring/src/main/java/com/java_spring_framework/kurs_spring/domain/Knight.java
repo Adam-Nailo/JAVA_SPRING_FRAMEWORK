@@ -6,9 +6,10 @@ package com.java_spring_framework.kurs_spring.domain;
  */
 
 public class Knight {
-
+    private int id;
     private String name;
     private int age;
+    private int level;
     private Quest quest;
 
     public Knight() {
@@ -18,6 +19,7 @@ public class Knight {
     public Knight(String name, int age) {
         this.name = name;
         this.age = age;
+        this.level = 1;
     }
 
 
@@ -40,6 +42,21 @@ public class Knight {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     @Override
