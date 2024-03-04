@@ -31,8 +31,8 @@ public class InMemoryRepository implements KnightRepository {
         if (knights.isEmpty()) {
             return 0;
         } else {
-           knights.keySet().stream().max(Integer::max);
-           return
+           Integer integer = knights.keySet().stream().max(Integer::max).get();
+           return integer+1;
         }
     }
 
