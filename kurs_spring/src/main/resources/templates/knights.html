@@ -11,23 +11,27 @@
 </head>
 <body>
 <div class="container">
-<table class="table">
-    <thead>
-    <tr>
-        <td>Imie rycerza</td>
-        <td>Poziom</td>
-        <td></td>
-    </tr>
-    </thead>
-    <tbody th:each="knight: ${knights}">
-    <tr>
-        <td th:text="${knight.name}"></td>
-        <td th:text="${knight.level}"></td>
-        <td><a th:href="${'/knight?id='+knight.id}">Podglad</a> </td>
-        <td><a th:href="${'/knight/delete/'+knight.id}">Usun</a> </td>
-    </tr>
-    </tbody>
-</table>
+
+    Aktualny czas: <span th:text="${timecomponent.time}"/>
+    Posiadane zloto: <span th:text="${playerinformation.gold}"/>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Imie rycerza</td>
+            <td>Poziom</td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody th:each="knight: ${knights}">
+        <tr>
+            <td th:text="${knight.name}"></td>
+            <td th:text="${knight.level}"></td>
+            <td><a th:href="${'/knight?id='+knight.id}">Podglad</a></td>
+            <td><a th:href="${'/knight/delete/'+knight.id}">Usun</a></td>
+        </tr>
+        </tbody>
+    </table>
     <div class="row">
         <a href="/newknight">Zrekrutuj nowego rycerza</a>
     </div>

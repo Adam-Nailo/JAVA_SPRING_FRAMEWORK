@@ -1,6 +1,8 @@
 package com.java_spring_framework.kurs_spring.controllers;
 
+import com.java_spring_framework.kurs_spring.components.TimeComponent;
 import com.java_spring_framework.kurs_spring.domain.Knight;
+import com.java_spring_framework.kurs_spring.domain.PlayerInformation;
 import com.java_spring_framework.kurs_spring.domain.repository.KnightRepository;
 import com.java_spring_framework.kurs_spring.services.KnightService;
 import jakarta.websocket.server.PathParam;
@@ -18,6 +20,11 @@ import java.util.List;
 @Controller
 public class KnightController {
 
+    @Autowired
+    TimeComponent timeComponent;
+
+    @Autowired
+    PlayerInformation playerInformation;
 
     @Autowired
     KnightService service;
@@ -26,26 +33,34 @@ public class KnightController {
     public String getKnights(Model model) {
         List<Knight> allKnights = service.getAllKnights();
         model.addAttribute("knights", allKnights);
+        model.addAttribute("timecomponent", timeComponent);
+        model.addAttribute("playerinformation", playerInformation);
         return "knights";
     }
 
     @RequestMapping("/knight")
-    public String getKnight(@RequestParam("id") Integer id, Model model){
+    public String getKnight(@RequestParam("id") Integer id, Model model) {
         Knight knight = service.getKnight(id);
         model.addAttribute("knight", knight);
+        model.addAttribute("timecomponent", timeComponent);
+        model.addAttribute("playerinformation", playerInformation);
         return "knight";
     }
 
     @RequestMapping("/newknight")
-    public String createKnight(Model model){
+    public String createKnight(Model model) {
         model.addAttribute("knight", new Knight());
+        model.addAttribute("timecomponent", timeComponent);
+        model.addAttribute("playerinformation", playerInformation);
         return "knightform";
     }
+
     @RequestMapping(value = "/knights", method = RequestMethod.POST)
     public String saveKnight(Knight knight) {
-    service.saveKnight(knight);
+        service.saveKnight(knight);
         return "redirect:/knights";
     }
+
     @RequestMapping(value = "/knight/delete/{id}")
     public String deleteKnight(@PathVariable("id") Integer id) {
         service.deleteKnight(id);
