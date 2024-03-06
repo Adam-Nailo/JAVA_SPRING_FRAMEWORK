@@ -1,13 +1,25 @@
 package com.java_spring_framework.kurs_spring.domain;
 
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.Range;
+
+
 /**
  * Created by Adam Seweryn
  */
 
 public class Knight {
     private int id;
+
+    @NotNull
+    @Size(min = 2, max = 40, message = "Imie rycerza musi miec miedzy 2, a 40 znakow.")
     private String name;
+    @NotNull
+    @Range(min = 18, max = 60, message = "Rycerz musi miec conajmniej 18 lat, a nie wiecej niz 60.")
     private int age;
     private int level;
     private Quest quest;
@@ -47,6 +59,7 @@ public class Knight {
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }

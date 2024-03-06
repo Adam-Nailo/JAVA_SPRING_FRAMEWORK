@@ -5,10 +5,12 @@ import com.java_spring_framework.kurs_spring.domain.Knight;
 import com.java_spring_framework.kurs_spring.domain.PlayerInformation;
 import com.java_spring_framework.kurs_spring.domain.repository.KnightRepository;
 import com.java_spring_framework.kurs_spring.services.KnightService;
+import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -56,9 +58,18 @@ public class KnightController {
     }
 
     @RequestMapping(value = "/knights", method = RequestMethod.POST)
-    public String saveKnight(Knight knight) {
-        service.saveKnight(knight);
-        return "redirect:/knights";
+    public String saveKnight(@Valid Knight knight, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            System.out.println("There were errors.");
+            bindingResult.getAllErrors().forEach(error -> {
+                System.out.println(error.getObjectName() + " " + error.getDefaultMessage());
+            });
+            return "knightform";
+        } else {
+            service.saveKnight(knight);
+            return "redirect:/knights";
+        }
     }
 
     @RequestMapping(value = "/knight/delete/{id}")
