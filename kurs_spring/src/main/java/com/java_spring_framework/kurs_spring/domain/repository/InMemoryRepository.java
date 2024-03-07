@@ -1,6 +1,7 @@
 package com.java_spring_framework.kurs_spring.domain.repository;
 
 import com.java_spring_framework.kurs_spring.domain.Knight;
+import com.java_spring_framework.kurs_spring.utils.Ids;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
@@ -20,17 +21,8 @@ public class InMemoryRepository implements KnightRepository {
     @Override
     public void createKnight(String name, int age) {
         Knight newKnight = new Knight(name, age);
-        newKnight.setId(getNewId());
+        newKnight.setId(Ids.getNewId(knights.keySet()));
         knights.put(newKnight.getId(), newKnight);
-    }
-
-    private int getNewId() {
-        if (knights.isEmpty()) {
-            return 0;
-        } else {
-           Integer integer = knights.keySet().stream().max(Comparator.naturalOrder()).get();
-           return integer+1;
-        }
     }
 
     @Override
@@ -60,7 +52,7 @@ public class InMemoryRepository implements KnightRepository {
 
     @Override
     public void createKnight(Knight knight) {
-        knight.setId(getNewId());
+        knight.setId(Ids.getNewId(knights.keySet()));
         knights.put(knight.getId(), knight);
     }
 

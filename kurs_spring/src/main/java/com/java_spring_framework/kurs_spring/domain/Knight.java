@@ -34,12 +34,6 @@ public class Knight {
         this.level = 1;
     }
 
-
-    public void setQuest(Quest quest) {
-        System.out.println("Ustawiam zadanie dla rycerza.");
-        this.quest = quest;
-    }
-
     public String getName() {
         return name;
     }
@@ -70,6 +64,15 @@ public class Knight {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public Quest getQuest() {
+        return quest;
+    }
+
+    public void setQuest(Quest quest) {
+        quest.setStarted(true);
+        this.quest = quest;
     }
 
     @Override
