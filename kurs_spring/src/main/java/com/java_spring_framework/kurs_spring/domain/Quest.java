@@ -5,22 +5,29 @@ package com.java_spring_framework.kurs_spring.domain;
  */
 public class Quest {
 
+    private int id;
     private String description;
-
     private int reward = 100;
-
     private int time = 30000;
-
     private boolean started = false;
     private boolean completed = false;
 
-    public Quest(String description) {
+    public Quest(int id, String description) {
+        this.id = id;
         this.description = description;
     }
 
     @Override
     public String toString() {
         return description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescription() {
