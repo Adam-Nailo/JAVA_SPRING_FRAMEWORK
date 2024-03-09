@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Component
 public class KnightService {
@@ -16,7 +17,10 @@ public class KnightService {
     @Autowired
     KnightRepository knightRepository;
 
-    public List<Knight> getAllKnights(){
+    @Autowired
+    PlayerInformation playerInformation;
+
+    public List<Knight> getAllKnights() {
         return new ArrayList<>(knightRepository.getAllKnights());
     }
 
@@ -38,10 +42,31 @@ public class KnightService {
 
     public int collectRewards() {
 
-        int sum = knightRepository.getAllKnights().stream().filter(knight -> knight.getQuest().isCompleted()).mapToInt(knight -> knight.getQuest().getReward()).sum();
+        Predicate<Knight> knightPredicate = knight -> {
+            if (knight.getQuest() != null) {
+                return knight.getQuest().isCompleted();
+            } else {
+                return false;
+            }
+        };
 
-        knightRepository.getAllKnights().stream().filter(knight -> knight.getQuest().isCompleted()).forEach(knight -> knight.setQuest(null));
+        int sum = knightRepository.getAllKnights().stream().filter(knightPredicate).mapToInt(knight -> knight.getQuest().getReward()).sum();
+
+        knightRepository.getAllKnights().stream().filter(knightPredicate).forEach(knight -> knight.setQuest(null));
 
         return sum;
+    }
+
+    public void getMyGold() {
+
+        List<Knight> allKnights = getAllKnights();
+        allKnights.forEach(knight -> {
+            if (knight.getQuest() != null) {
+                knight.getQuest().isCompleted();
+            }
+        });
+
+        int currentGold = playerInformation.getGold();
+        playerInformation.setGold(currentGold + collectRewards());
     }
 }
