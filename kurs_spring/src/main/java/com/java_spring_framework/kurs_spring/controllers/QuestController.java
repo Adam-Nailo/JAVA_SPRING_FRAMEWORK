@@ -1,6 +1,7 @@
 package com.java_spring_framework.kurs_spring.controllers;
 
 import com.java_spring_framework.kurs_spring.domain.Knight;
+import com.java_spring_framework.kurs_spring.domain.PlayerInformation;
 import com.java_spring_framework.kurs_spring.domain.Quest;
 import com.java_spring_framework.kurs_spring.services.KnightService;
 import com.java_spring_framework.kurs_spring.services.QuestService;
@@ -22,6 +23,9 @@ public class QuestController {
     @Autowired
     QuestService questService;
 
+    @Autowired
+    PlayerInformation playerInformation;
+
     @RequestMapping("/assignQuest")
     public String assignQuest(@RequestParam("knightId") Integer id, Model model) {
         Knight knight = knightService.getKnight(id);
@@ -33,9 +37,24 @@ public class QuestController {
 
     @RequestMapping(value = "/assignQuest", method = RequestMethod.POST)
     public String assignQuest(Knight knight) {
-       knightService.updateKnight(knight);
-       Quest quest = knight.getQuest();
-       questService.update(quest);
+        knightService.updateKnight(knight);
+        Quest quest = knight.getQuest();
+        questService.update(quest);
+        return "redirect:/knights";
+    }
+
+    @RequestMapping(value = "/checkQuests")
+    public String checkQuests() {
+
+        List<Knight> allKnights = knightService.getAllKnights();
+        allKnights.forEach(knight -> {
+            knight.getQuest().isCompleted();
+        });
+
+        int currentGold = playerInformation.getGold();
+
+        playerInformation.setGold(currentGold + knightService.collectRewards());
+
         return "redirect:/knights";
     }
 }

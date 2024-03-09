@@ -1,5 +1,8 @@
 package com.java_spring_framework.kurs_spring.domain;
 
+import java.time.LocalDateTime;
+
+
 /**
  * Created by Adam Seweryn
  */
@@ -8,9 +11,11 @@ public class Quest {
     private int id;
     private String description;
     private int reward = 100;
-    private int time = 30000;
+    protected int lengthInSeconds = 10;
     private boolean started = false;
     private boolean completed = false;
+
+    protected LocalDateTime startDate;
 
     public Quest(int id, String description) {
         this.id = id;
@@ -33,6 +38,7 @@ public class Quest {
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -45,12 +51,12 @@ public class Quest {
         this.reward = reward;
     }
 
-    public int getTime() {
-        return time;
+    public int getLengthInSeconds() {
+        return lengthInSeconds;
     }
 
-    public void setTime(int time) {
-        this.time = time;
+    public void setLengthInSeconds(int lengthInSeconds) {
+        this.lengthInSeconds = lengthInSeconds;
     }
 
     public boolean isStarted() {
@@ -58,14 +64,32 @@ public class Quest {
     }
 
     public void setStarted(boolean started) {
+
+        if (started) {
+            this.startDate = LocalDateTime.now();
+        }
+
         this.started = started;
     }
 
-    public boolean isFinished() {
-        return completed;
-    }
+    public boolean isCompleted() {
 
-    public void setFinished(boolean finished) {
-        this.completed = finished;
+        if (this.completed) {
+            return this.completed;
+        } else {
+
+
+            LocalDateTime now = LocalDateTime.now();
+
+            LocalDateTime questEndDate = this.startDate.plusSeconds(this.lengthInSeconds);
+
+            boolean isAfter = now.isAfter(questEndDate);
+
+            if (isAfter) {
+                this.completed = true;
+            }
+
+            return isAfter;
+        }
     }
 }
