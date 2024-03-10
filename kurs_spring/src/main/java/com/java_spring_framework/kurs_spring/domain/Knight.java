@@ -1,6 +1,7 @@
 package com.java_spring_framework.kurs_spring.domain;
 
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.Range;
@@ -9,8 +10,11 @@ import org.hibernate.validator.constraints.Range;
 /**
  * Created by Adam Seweryn
  */
-
+@Entity
 public class Knight {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @NotNull
@@ -20,6 +24,8 @@ public class Knight {
     @Range(min = 18, max = 60, message = "Rycerz musi miec conajmniej 18 lat, a nie wiecej niz 60.")
     private int age;
     private int level;
+
+    @OneToOne
     private Quest quest;
 
     public Knight() {
