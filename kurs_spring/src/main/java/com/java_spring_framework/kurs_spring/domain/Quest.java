@@ -1,13 +1,18 @@
 package com.java_spring_framework.kurs_spring.domain;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 
 /**
  * Created by Adam Seweryn
  */
+@Entity
 public class Quest {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String description;
     private int reward = 100;
@@ -20,6 +25,10 @@ public class Quest {
     public Quest(int id, String description) {
         this.id = id;
         this.description = description;
+    }
+
+    public Quest() {
+
     }
 
     @Override
