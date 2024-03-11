@@ -4,6 +4,7 @@ import com.java_spring_framework.kurs_spring.components.TimeComponent;
 import com.java_spring_framework.kurs_spring.domain.Knight;
 import com.java_spring_framework.kurs_spring.domain.PlayerInformation;
 import com.java_spring_framework.kurs_spring.domain.repository.KnightRepository;
+import com.java_spring_framework.kurs_spring.domain.repository.PlayerInformationRepository;
 import com.java_spring_framework.kurs_spring.services.KnightService;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
@@ -26,7 +27,7 @@ public class KnightController {
     TimeComponent timeComponent;
 
     @Autowired
-    PlayerInformation playerInformation;
+    PlayerInformationRepository playerInformationRepository;
 
     @Autowired
     KnightService service;
@@ -43,6 +44,7 @@ public class KnightController {
     @RequestMapping("/knight")
     public String getKnight(@RequestParam("id") Integer id, Model model) {
         Knight knight = service.getKnight(id);
+        PlayerInformation pi = playerInformationRepository.getFirst();
         model.addAttribute("knight", knight);
         model.addAttribute("timecomponent", timeComponent);
         model.addAttribute("playerinformation", playerInformation);

@@ -22,5 +22,5 @@ public interface KnightRepository {
 
     Knight getKnightById(Integer id);
 
-   default void updateKnight(int id, Knight knight) {System.out.println("Używam bazy danych.");}
+   default void updateKnight(int id, Knight knight) {}
 }

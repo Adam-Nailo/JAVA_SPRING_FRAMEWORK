@@ -25,7 +25,7 @@ public class Knight {
     private int age;
     private int level;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Quest quest;
 
     public Knight() {

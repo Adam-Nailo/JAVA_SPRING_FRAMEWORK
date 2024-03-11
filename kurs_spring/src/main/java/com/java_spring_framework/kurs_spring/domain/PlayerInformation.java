@@ -6,7 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import org.springframework.stereotype.Component;
 
-@Component
 @Entity
 public class PlayerInformation {
 
