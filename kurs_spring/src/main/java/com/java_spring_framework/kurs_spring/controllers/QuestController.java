@@ -3,6 +3,7 @@ package com.java_spring_framework.kurs_spring.controllers;
 import com.java_spring_framework.kurs_spring.domain.Knight;
 import com.java_spring_framework.kurs_spring.domain.PlayerInformation;
 import com.java_spring_framework.kurs_spring.domain.Quest;
+import com.java_spring_framework.kurs_spring.domain.repository.PlayerInformationRepository;
 import com.java_spring_framework.kurs_spring.services.KnightService;
 import com.java_spring_framework.kurs_spring.services.QuestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class QuestController {
     QuestService questService;
 
     @Autowired
-    PlayerInformation playerInformation;
+    PlayerInformationRepository playerInformationRepository;
 
     @RequestMapping("/assignQuest")
     public String assignQuest(@RequestParam("knightId") Integer id, Model model) {

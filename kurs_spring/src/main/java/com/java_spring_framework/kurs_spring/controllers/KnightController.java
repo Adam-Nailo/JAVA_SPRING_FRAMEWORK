@@ -35,6 +35,7 @@ public class KnightController {
     @RequestMapping("/knights")
     public String getKnights(Model model) {
         List<Knight> allKnights = service.getAllKnights();
+        PlayerInformation playerInformation = playerInformationRepository.getFirst();
         model.addAttribute("knights", allKnights);
         model.addAttribute("timecomponent", timeComponent);
         model.addAttribute("playerinformation", playerInformation);
@@ -44,7 +45,7 @@ public class KnightController {
     @RequestMapping("/knight")
     public String getKnight(@RequestParam("id") Integer id, Model model) {
         Knight knight = service.getKnight(id);
-        PlayerInformation pi = playerInformationRepository.getFirst();
+        PlayerInformation playerInformation = playerInformationRepository.getFirst();
         model.addAttribute("knight", knight);
         model.addAttribute("timecomponent", timeComponent);
         model.addAttribute("playerinformation", playerInformation);
@@ -53,6 +54,7 @@ public class KnightController {
 
     @RequestMapping("/newknight")
     public String createKnight(Model model) {
+        PlayerInformation playerInformation = playerInformationRepository.getFirst();
         model.addAttribute("knight", new Knight());
         model.addAttribute("timecomponent", timeComponent);
         model.addAttribute("playerinformation", playerInformation);
