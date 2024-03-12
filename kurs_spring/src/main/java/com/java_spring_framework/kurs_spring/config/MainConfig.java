@@ -12,24 +12,15 @@ public class MainConfig {
 
     @Bean(name = "inMemoryKnightRepository")
     @Profile("dev")
-    public KnightRepository createInMemoryRepo(){
+    public KnightRepository createInMemoryRepo() {
         KnightRepository repo = new InMemoryRepository();
         return repo;
     }
 
     @Bean(name = "DBKnightRepository")
     @Profile("prod")
-    public KnightRepository createDBKnightRepo(){
+    public KnightRepository createDBKnightRepo() {
         KnightRepository repo = new DBKnightRepository();
         return repo;
     }
-
-    @Autowired
-    public void securityUsers(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.inMemoryAuthentication()
-                .withUser("user1").password("{noop}user1").roles("USER")
-                .and()
-                .withUser("user2").password("{noop}user2").roles("ADMIN");
-    }
-
 }
